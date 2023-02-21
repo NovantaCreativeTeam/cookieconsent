@@ -42,8 +42,7 @@ class CookieConsent extends Module
     const CC_DISPLAY_SECTION_ADS = "CC_DISPLAY_SECTION_ADS";
     const CC_DISPLAY_SECTION_ANALYTICS = "CC_DISPLAY_SECTION_ANALYTICS";
     const CC_AUTO_CLEAR = "CC_AUTO_CLEAR";
-    const CC_PARAM_BTN_COLOR = "CC_PARAM_BTN_COLOR";
-    const CC_PARAM_BTN_BG = "CC_PARAM_BTN_BG";
+    const CC_THEME = 'CC_THEME';
 
     protected $config_form = false;
 
@@ -80,8 +79,7 @@ class CookieConsent extends Module
         Configuration::updateValue(self::CC_DISPLAY_SECTION_CUSTOMISE, true);
         Configuration::updateValue(self::CC_DISPLAY_SECTION_SECURITY, true);
         Configuration::updateValue(self::CC_AUTO_CLEAR, false);
-        Configuration::updateValue(self::CC_PARAM_BTN_COLOR, "#2d4156");
-        Configuration::updateValue(self::CC_PARAM_BTN_BG, "#000");
+        Configuration::updateValue(self::CC_THEME, 'light');
 
         return parent::install() &&
             $this->registerHook('displayHeader') &&
@@ -416,16 +414,24 @@ class CookieConsent extends Module
                         ),
                     ),
                     array(
-                        'type' => 'color',
-                        'label' => $this->l('Text Color'),
-                        'name' => self::CC_PARAM_BTN_COLOR,
-                        'desc' => $this->l('Change text color'),
-                    ),
-                    array(
-                        'type' => 'color',
-                        'label' => $this->l('Background Color'),
-                        'name' => self::CC_PARAM_BTN_BG,
-                        'desc' => $this->l('Change background color'),
+                        'type' => 'select',
+                        'label' => $this->l('Theme'),
+                        'name' => self::CC_THEME,
+                        'desc' => $this->l('Choose cookie consent theme'),
+                        'options' => array(
+                            'query' => [
+                                array(
+                                    'id_option' => 'light',
+                                    'label' => $this->l('Light Theme')
+                                ),
+                                array(
+                                    'id_option' => 'dark',
+                                    'label' => $this->l('Dark Theme')
+                                ),
+                            ],
+                            'id' => 'id_option',
+                            'name' => 'label',
+                        ),
                     ),
                 ),
                 'submit' => array(
@@ -453,8 +459,7 @@ class CookieConsent extends Module
             self::CC_DISPLAY_SECTION_FUNCTION => Configuration::get(self::CC_DISPLAY_SECTION_FUNCTION, null, null, null, true),
             self::CC_DISPLAY_SECTION_CUSTOMISE => Configuration::get(self::CC_DISPLAY_SECTION_CUSTOMISE, null, null, null, true),
             self::CC_DISPLAY_SECTION_SECURITY => Configuration::get(self::CC_DISPLAY_SECTION_SECURITY, null, null, null, true),
-            self::CC_PARAM_BTN_BG => Configuration::get(self::CC_PARAM_BTN_BG, null, null, null, "#fff"),
-            self::CC_PARAM_BTN_COLOR => Configuration::get(self::CC_PARAM_BTN_COLOR, null, null, null, "#2d4156"),
+            self::CC_THEME => Configuration::get(self::CC_THEME, null, null, null, true)
         );
     }
 
@@ -476,13 +481,13 @@ class CookieConsent extends Module
     public function hookdisplayHeader()
     {
         $this->context->controller->addCSS($this->_path.'/views/css/front.css');
-
+        
+        $this->context->controller->registerJavascript('cookie-consent-lib', $this->_path.'/views/js/cookie-consent.min.js');
+        $this->context->controller->registerJavascript('cookie-consent', $this->_path.'/views/js/front.js');
+        
         $this->context->smarty->assign(
             [
-                'colors' => [
-                    'text' => Configuration::get(self::CC_PARAM_BTN_COLOR, null, null, null, "#2d4156"),
-                    'bg' => Configuration::get(self::CC_PARAM_BTN_BG, null, null, null, "#fff")
-                ],
+                'theme' => Configuration::get(self::CC_THEME),
                 'config' => json_encode([
                     'global' => ['enabled' => Configuration::get(self::CC_LIVE_MODE, null, null, null, true)],
                     'plugin_options' => [
@@ -503,7 +508,7 @@ class CookieConsent extends Module
                     "settings_modal_options" => [
                         'layout' => Configuration::get(self::CC_SETTINGS_LAYOUT, null, null, null, "box"),
                         "transition" => "slide",
-                        "modal_trigger_selector" => ".open-mdn-cookie"
+                        "modal_trigger_selector" => "#open-cookieconsent"
                     ],
                     "functionality_storage" => [
                         "enabled_by_default" => 1,

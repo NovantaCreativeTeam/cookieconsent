@@ -25,3 +25,32 @@
 * Don't forget to prefix your containers with your own identifier
 * to avoid any conflicts with others containers.
 */
+
+window.dataLayer = window.dataLayer || [];
+(function () {
+    initCookieConsentLocale()
+    initGTag()
+
+    let gtag = function(){dataLayer.push(arguments);}
+    let default_consent = {};
+    cc_wrapper_config.storage_pool.forEach((s) => {
+        default_consent[s.name] = s.enabled_by_default ? "granted" : "denied"
+    });
+    gtag('consent', 'default', default_consent);
+
+    function initCookieConsentLocale() {
+        let ccw = CookieConsentWrapper;
+        let locale = "default";
+        let i18n = JSON.parse(document.getElementById("cookieconsent_i18n").textContent);
+        ccw.addTranslations(locale, i18n);
+    }
+
+    function initGTag() {
+        let gtag = function(){dataLayer.push(arguments);}
+        let default_consent = {};
+        cc_wrapper_config.storage_pool.forEach((s) => {
+            default_consent[s.name] = s.enabled_by_default ? "granted" : "denied"
+        });
+        gtag('consent', 'default', default_consent);
+    }
+})()

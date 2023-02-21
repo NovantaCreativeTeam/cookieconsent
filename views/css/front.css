@@ -25,21 +25,13 @@
 * Don't forget to prefix your containers with your own identifier
 * to avoid any conflicts with others containers.
 */
-
-.mdn-cookie-button {
+.open-cookieconsent-btn {
     position: fixed;
     bottom: 0;
-    right: 1rem;
-    background: var(--mdn-background);
-    color: var(--mdn-primary);
-    padding: 0.5rem 1rem !important;
-    font-weight: 600;
-    transform: translateY(50%);
-    transition: 0.5s;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
-    font-size: 0.875rem;
-}
-
-.mdn-cookie-button:hover {
-    transform: translateY(0);
+    left: 2rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    font-size: 0.9rem;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    z-index: 9999
 }
