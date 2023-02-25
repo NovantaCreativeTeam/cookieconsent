@@ -248,13 +248,29 @@ class CookieConsent extends Module
                                     'label' => $this->l('Cloud')
                                 ),
                                 array(
+                                    'id_option' => 'cloud inline',
+                                    'label' => $this->l('Cloud Inline')
+                                ),
+                                array(
                                     'id_option' => 'box',
                                     'label' => $this->l('Box')
+                                ),
+                                array(
+                                    'id_option' => 'box inline',
+                                    'label' => $this->l('Box Inline')
+                                ),
+                                array(
+                                    'id_option' => 'box wide',
+                                    'label' => $this->l('Box Wide')
                                 ),
                                 array(
                                     'id_option' => 'bar',
                                     'label' => $this->l('Bar')
                                 ),
+                                array(
+                                    'id_option' => 'bar wide',
+                                    'label' => $this->l('Bar Wide')
+                                )
                             ],
                                 'id' => 'id_option',
                                 'name' => 'label',
@@ -480,101 +496,107 @@ class CookieConsent extends Module
      */
     public function hookdisplayHeader()
     {
-        $this->context->controller->addCSS($this->_path.'/views/css/front.css');
+        $this->context->controller->registerStylesheet('cookie-consent-css', $this->_path . '/views/css/front.css');
+
+        $this->context->controller->registerStylesheet('cookieconsent-css', 'https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@v3.0.0-rc.13/dist/cookieconsent.css', ['server' => 'remote']);
+        $this->context->controller->registerJavascript('cookieconsent-js', 'https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@v3.0.0-rc.13/dist/cookieconsent.umd.js', ['server' => 'remote', 'position' => 'bottom']);
+        $this->context->controller->registerJavascript('cookieconsent-init', $this->_path . '/views/js/cookieconsent-init.js', ['position' => 'bottom']);
+
+        $this->context->controller->registerJavascript('gtag-consent-init', $this->_path . '/views/js/gtag-consent-init.js', ['position' => 'head', 'priority' => 1]);
+
+        $cookieCategories = [];
+        $sections = [];
+        if(Configuration::get(self::CC_DISPLAY_SECTION_FUNCTION, true)) {
+            $cookieCategories['functionality_storage'] = [
+                'enabled' => true,
+                'readOnly' => true
+            ];
+
+            $sections[] = [
+                'title' => $this->trans('Strictly Necessary cookies', [], 'Modules.Cookieconsent.Modal'),
+                'description' => $this->trans('These cookies are essential for the proper functioning of the website and cannot be disabled.', [], 'Modules.Cookieconsent.Modal'),
+                'linkedCategory' => 'functionality_storage'              
+            ];
+        }
+
+        if(Configuration::get(self::CC_DISPLAY_SECTION_CUSTOMISE, true)) {
+            $cookieCategories['personalization_storage'] = [
+                'enabled' => false,
+                'readOnly' => false
+            ];
+
+            $sections[] = [
+                'title' => $this->trans('Personalization cookies', [], 'Modules.Cookieconsent.Modal'),
+                'description' => $this->trans('Personalisation cookies may use third party cookies to help them personalise content and track users across different websites and devices.', [], 'Modules.Cookieconsent.Modal'),
+                'linkedCategory' => 'personalization_storage'              
+            ];
+        }
         
-        $this->context->controller->registerJavascript('cookie-consent-lib', $this->_path.'/views/js/cookie-consent.min.js');
-        $this->context->controller->registerJavascript('cookie-consent', $this->_path.'/views/js/front.js');
-        
+        if(Configuration::get(self::CC_DISPLAY_SECTION_SECURITY, true)) {
+            $cookieCategories['security_storage'] = [
+                'enabled' => false,
+                'readOnly' => false
+            ];
+
+            $sections[] = [
+                'title' => $this->trans('Security cookies', [], 'Modules.Cookieconsent.Modal'),
+                'description' => $this->trans('Security cookies allows storage of security-related information, such as authentication, fraud protection, and other means to protect the user.', [], 'Modules.Cookieconsent.Modal'),
+                'linkedCategory' => 'security_storage'              
+            ];
+        }
+
+        if(Configuration::get(self::CC_DISPLAY_SECTION_ANALYTICS, true)) {
+            $cookieCategories['analytics_storage'] = [
+                'enabled' => false,
+                'readOnly' => false
+            ];
+
+            $sections[] = [
+                'title' => $this->trans('Analytics cookies', [], 'Modules.Cookieconsent.Modal'),
+                'description' => $this->trans('Analytics cookies allow us to measure the performance of our website and our advertising campaigns. We use them to determine the number of visits and sources of visits to our website. We process the data obtained through these cookies in aggregate, without using identifiers that point to specific users of our website. If you disable the use of analytics cookies in relation to your visit, we lose the ability to analyse performance and optimise our measures.', [], 'Modules.Cookieconsent.Modal'),
+                'linkedCategory' => 'analytics_storage'              
+            ];
+        }
+
+        if(Configuration::get(self::CC_DISPLAY_SECTION_ADS, true)) {
+            $cookieCategories['ad_storage'] = [
+                'enabled' => false,
+                'readOnly' => false
+            ];
+
+            $sections[] = [
+                'title' => $this->trans('Ad cookies', [], 'Modules.Cookieconsent.Modal'),
+                'description' => $this->trans('Advertising cookies are used by us or our partners to show you relevant content or advertisements both on our site and on third party sites. This enables us to create profiles based on your interests, so-called pseudonymised profiles. Based on this information, it is generally not possible to directly identify you as a person, as only pseudonymised data is used. Unless you express your consent, you will not receive content and advertisements tailored to your interests.', [], 'Modules.Cookieconsent.Modal'),
+                'linkedCategory' => 'ad_storage'              
+            ];
+        }
+
         $this->context->smarty->assign(
             [
                 'theme' => Configuration::get(self::CC_THEME),
                 'config' => json_encode([
-                    'global' => ['enabled' => Configuration::get(self::CC_LIVE_MODE, null, null, null, true)],
-                    'plugin_options' => [
-                        "cookie_name" => "consent-settings",
-                        "force_consent" => Configuration::get(self::CC_FORCE_CONSENT, null, null, null, true),
-                        "page_scripts" => true
-                    ],
-                    'auto_clear_options' => [
-                        'enabled' => Configuration::get(self::CC_AUTO_CLEAR, null, null, null, false),
-                        "strategy" => "clear_all_except_defined"
-                    ],
-                    "consent_modal_options" => [
-                        'layout' =>  Configuration::get(self::CC_CONSENT_LAYOUT, null, null, null, "cloud"),
-                        'position' => Configuration::get(self::CC_CONSENT_POSITION, null, null, null, "bottom right"),
-                        'secondary_button_role' => Configuration::get(self::CC_SHOW_THIRD_BUTTON, null, null, null, true) ? "accept_necessary": "settings",
-                        'show_third_button' => Configuration::get(self::CC_SHOW_THIRD_BUTTON, null, null, null, true),
-                    ],
-                    "settings_modal_options" => [
-                        'layout' => Configuration::get(self::CC_SETTINGS_LAYOUT, null, null, null, "box"),
-                        "transition" => "slide",
-                        "modal_trigger_selector" => "#open-cookieconsent"
-                    ],
-                    "functionality_storage" => [
-                        "enabled_by_default" => 1,
-                        "display_in_widget" => Configuration::get(self::CC_DISPLAY_SECTION_FUNCTION, null, null, null, true),
-                        "readonly" => 1,
-                    ],
-                    "personalization_storage" => [
-                        "enabled_by_default" => 0,
-                        "display_in_widget" => Configuration::get(self::CC_DISPLAY_SECTION_CUSTOMISE, null, null, null, true),
-                        "readonly" => 0,
-                    ],
-                    "security_storage" => [
-                        "enabled_by_default" => 1,
-                        "display_in_widget" => Configuration::get(self::CC_DISPLAY_SECTION_SECURITY, null, null, null, true),
-                        "readonly" => 1,
-                    ],
-                    "ad_storage" => [
-                        "enabled_by_default" => 0,
-                        "display_in_widget" => Configuration::get(self::CC_DISPLAY_SECTION_ADS, null, null, null, true),
-                        "readonly" => 0,
-                    ],
-                    "analytics_storage" => [
-                        "enabled_by_default" => 0,
-                        "display_in_widget" => Configuration::get(self::CC_DISPLAY_SECTION_ANALYTICS, null, null, null, true),
-                        "readonly" => 0,
-                    ],
-                    "storage_pool" => [
-                        [
-                            "name" => "functionality_storage",
-                            "enabled_by_default" => true,
-                            "display_in_widget" => Configuration::get(self::CC_DISPLAY_SECTION_FUNCTION, true),
-                            "readonly" => true,
+                    "disablePageInteraction" => Configuration::get(self::CC_FORCE_CONSENT, null, null, null, true),
+                    "autoClearCookies" => Configuration::get(self::CC_AUTO_CLEAR, null, null, null, false),
+                    "guiOptions" => [
+                        "consentModal" => [
+                            'layout' =>  Configuration::get(self::CC_CONSENT_LAYOUT, null, null, null, "cloud"),
+                            'position' => Configuration::get(self::CC_CONSENT_POSITION, null, null, null, "bottom right"),
+                            'equalWeightButtons' => false,
+                            'flipButtons' => false
                         ],
-                        [
-                            "name" => "personalization_storage",
-                            "enabled_by_default" => false,
-                            "display_in_widget" => Configuration::get(self::CC_DISPLAY_SECTION_CUSTOMISE, true),
-                            "readonly" => false,
+                        "preferencesModal" => [
+                            'layout' => Configuration::get(self::CC_SETTINGS_LAYOUT, null, null, null, "box")
                         ],
-                        [
-                            "name" => "security_storage",
-                            "enabled_by_default" => true,
-                            "display_in_widget" => Configuration::get(self::CC_DISPLAY_SECTION_SECURITY, true),
-                            "readonly" => true,
-                        ],
-                        [
-                            "name" => "ad_storage",
-                            "enabled_by_default" => false,
-                            "display_in_widget" => Configuration::get(self::CC_DISPLAY_SECTION_ADS, true),
-                            "readonly" => false,
-                        ],
-                        [
-                            "name" => "analytics_storage",
-                            "enabled_by_default" => false,
-                            "display_in_widget" => Configuration::get(self::CC_DISPLAY_SECTION_ANALYTICS, true),
-                            "readonly" => false,
-                        ]
-                    ]
+                    ],
+                    'auto_language' => 'browser',
+                    'categories' => $cookieCategories,
+                    'sections' => $sections,
                 ]),
-
             ]
         );
         return $this->display(__FILE__, "views/templates/front/hook/displayHeader.tpl");
     }
 
-    
     public function hookDisplayFooter()
     {
         return $this->display(__FILE__, "views/templates/front/hook/displayFooter.tpl");
