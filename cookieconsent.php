@@ -30,12 +30,10 @@ if (!defined('_PS_VERSION_')) {
 
 class CookieConsent extends Module
 {
-    const CC_LIVE_MODE = "CC_LIVE_MODE";
     const CC_FORCE_CONSENT = "CC_FORCE_CONSENT";
     const CC_CONSENT_LAYOUT = "CC_CONSENT_LAYOUT";
     const CC_CONSENT_POSITION = "CC_CONSENT_POSITION";
     const CC_SETTINGS_LAYOUT = "CC_SETTINGS_LAYOUT";
-    const CC_SHOW_THIRD_BUTTON = "CC_SHOW_THIRD_BUTTON";
     const CC_DISPLAY_SECTION_FUNCTION = "CC_DISPLAY_SECTION_FUNCTION";
     const CC_DISPLAY_SECTION_CUSTOMISE = "CC_DISPLAY_SECTION_CUSTOMISE";
     const CC_DISPLAY_SECTION_SECURITY = "CC_DISPLAY_SECTION_SECURITY";
@@ -67,12 +65,10 @@ class CookieConsent extends Module
 
     public function install()
     {
-        Configuration::updateValue(self::CC_LIVE_MODE, true);
         Configuration::updateValue(self::CC_FORCE_CONSENT, false);
         Configuration::updateValue(self::CC_CONSENT_LAYOUT, "cloud");
         Configuration::updateValue(self::CC_SETTINGS_LAYOUT, "box");
         Configuration::updateValue(self::CC_CONSENT_POSITION, "bottom right");
-        Configuration::updateValue(self::CC_SHOW_THIRD_BUTTON, true);
         Configuration::updateValue(self::CC_DISPLAY_SECTION_ADS, true);
         Configuration::updateValue(self::CC_DISPLAY_SECTION_ANALYTICS, true);
         Configuration::updateValue(self::CC_DISPLAY_SECTION_FUNCTION, true);
@@ -150,25 +146,6 @@ class CookieConsent extends Module
                 'icon' => 'icon-cogs',
                 ),
                 'input' => array(
-                    array(
-                        'type' => 'switch',
-                        'label' => $this->l('Enable Module'),
-                        'name' => self::CC_LIVE_MODE,
-                        'is_bool' => true,
-                        'desc' => $this->l('Use this module in live mode'),
-                        'values' => array(
-                            array(
-                                'id' => 'active_on',
-                                'value' => true,
-                                'label' => $this->l('Enabled')
-                            ),
-                            array(
-                                'id' => 'active_off',
-                                'value' => false,
-                                'label' => $this->l('Disabled')
-                            )
-                        ),
-                    ),
                     array(
                         'type' => 'switch',
                         'label' => $this->l('Force consent'),
@@ -294,25 +271,6 @@ class CookieConsent extends Module
                             ],
                                 'id' => 'id_option',
                                 'name' => 'label',
-                        ),
-                    ),
-                    array(
-                        'type' => 'switch',
-                        'label' => $this->l('Show third button'),
-                        'name' => self::CC_SHOW_THIRD_BUTTON,
-                        'is_bool' => true,
-                        'desc' => $this->l('Show third button with personnalize'),
-                        'values' => array(
-                            array(
-                                'id' => 'active_on',
-                                'value' => true,
-                                'label' => $this->l('Enabled')
-                            ),
-                            array(
-                                'id' => 'active_off',
-                                'value' => false,
-                                'label' => $this->l('Disabled')
-                            )
                         ),
                     ),
                     array(
@@ -463,12 +421,10 @@ class CookieConsent extends Module
     protected function getConfigFormValues()
     {
         return array(
-            self::CC_LIVE_MODE => Configuration::get(self::CC_LIVE_MODE,null, null, null,  true),
             self::CC_FORCE_CONSENT => Configuration::get(self::CC_FORCE_CONSENT, null, null, null, false),
             self::CC_CONSENT_POSITION => Configuration::get(self::CC_CONSENT_POSITION, null, null, null, "bottom right"),
             self::CC_CONSENT_LAYOUT => Configuration::get(self::CC_CONSENT_LAYOUT, null, null, null, "cloud"),
             self::CC_SETTINGS_LAYOUT => Configuration::get(self::CC_SETTINGS_LAYOUT,null, null, null,  "box"),
-            self::CC_SHOW_THIRD_BUTTON => Configuration::get(self::CC_SHOW_THIRD_BUTTON, null, null, null, true),
             self::CC_AUTO_CLEAR => Configuration::get(self::CC_AUTO_CLEAR,null, null, null,  false),
             self::CC_DISPLAY_SECTION_ADS => Configuration::get(self::CC_DISPLAY_SECTION_ADS, null, null, null, true),
             self::CC_DISPLAY_SECTION_ANALYTICS => Configuration::get(self::CC_DISPLAY_SECTION_ANALYTICS, null, null, null, true),
