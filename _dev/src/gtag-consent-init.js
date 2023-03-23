@@ -1,6 +1,7 @@
 window.dataLayer = window.dataLayer || [];
 function gtag() { window.dataLayer.push(arguments); }
 gtag('consent', 'default', {
+    'functionality_storage': 'granted',
     'personalization_storage': 'denied',
     'security_storage': 'denied',
     'analytics_storage': 'denied',
@@ -8,19 +9,21 @@ gtag('consent', 'default', {
 });
 
 (function($) {
-    window.addEventListener('cc:onFirstConsent, cc:onConsent', function(event){
-        let consent = {}
-        let userPreferences = CookieConsent.getUserPreferences()
-        userPreferences.acceptedCategories.forEach(category => {
-            consent[category] = 'granted'
-        });
+    ['cc:onFirstConsent', 'cc:onConsent'].forEach((eventName) => {
+        window.addEventListener(eventName, (e) => {
+            let consent = {}
+            let userPreferences = CookieConsent.getUserPreferences()
+            userPreferences.acceptedCategories.forEach(category => {
+                consent[category] = 'granted'
+            });
 
-        userPreferences.rejectedCategories.forEach(category => {
-            consent[category] = 'denied'
-        });
+            userPreferences.rejectedCategories.forEach(category => {
+                consent[category] = 'denied'
+            });
 
-        gtag('consent', 'update', consent)
-    });
+            gtag('consent', 'update', consent)
+        })
+    })
 
     window.addEventListener('cc:onChange', function(event){
         let consent = {}

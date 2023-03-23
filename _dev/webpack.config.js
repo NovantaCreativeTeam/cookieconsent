@@ -2,8 +2,6 @@ const webpack = require('webpack');
 const path = require('path');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-
 
 const config = {
     entry: {
@@ -12,7 +10,8 @@ const config = {
     },
     output: {
         path: path.resolve(__dirname, '../views/js'),
-        filename: '[name].js'
+        filename: '[name].min.js',
+        clean: true
     },
     module: {
         rules: [
@@ -35,11 +34,6 @@ const config = {
                     'css-loader',
                     {
                         loader: 'sass-loader',
-                        // options: {
-                        //     sassOptions: {
-                        //         indentedSyntax: true
-                        //     }
-                        // }
                     }
                 ]
             }
@@ -51,8 +45,7 @@ const config = {
         jquery: 'jQuery',
     },
     plugins: [
-        new MiniCssExtractPlugin({ filename: path.join('..', 'css', '[name].css') }),
-        // new CleanWebpackPlugin(),
+        new MiniCssExtractPlugin({ filename: path.join('..', 'css', '[name].css') })
     ]
 };
 
@@ -87,4 +80,4 @@ module.exports = (env, argv) => {
     return config;
 }
 
-module.exports = config;
+//module.exports = config;

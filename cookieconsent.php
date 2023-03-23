@@ -420,7 +420,7 @@ class CookieConsent extends Module
      */
     protected function getConfigFormValues()
     {
-        return array(
+        return array (
             self::CC_FORCE_CONSENT => Configuration::get(self::CC_FORCE_CONSENT, null, null, null, false),
             self::CC_CONSENT_POSITION => Configuration::get(self::CC_CONSENT_POSITION, null, null, null, "bottom right"),
             self::CC_CONSENT_LAYOUT => Configuration::get(self::CC_CONSENT_LAYOUT, null, null, null, "cloud"),
@@ -456,9 +456,8 @@ class CookieConsent extends Module
 
         $this->context->controller->registerStylesheet('cookieconsent-css', 'https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@v3.0.0-rc.13/dist/cookieconsent.css', ['server' => 'remote']);
         $this->context->controller->registerJavascript('cookieconsent-js', 'https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@v3.0.0-rc.13/dist/cookieconsent.umd.js', ['server' => 'remote', 'position' => 'bottom']);
-        $this->context->controller->registerJavascript('cookieconsent-init', $this->_path . '/views/js/cookieconsent-init.js', ['position' => 'bottom']);
-
-        $this->context->controller->registerJavascript('gtag-consent-init', $this->_path . '/views/js/gtag-consent-init.js', ['position' => 'head', 'priority' => 1]);
+        $this->context->controller->registerJavascript('cookieconsent-init', $this->_path . '/views/js/cookieconsent-init.min.js', ['position' => 'bottom']);
+        $this->context->controller->registerJavascript('gtag-consent-init', $this->_path . '/views/js/gtag-consent-init.min.js', ['position' => 'head', 'priority' => 1]);
 
         $cookieCategories = [];
         $sections = [];
