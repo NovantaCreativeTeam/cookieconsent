@@ -526,6 +526,18 @@ class CookieConsent extends Module
             ];
         }
 
+        array_unshift( $sections, [ 'description' => $this->trans('From this section you can manager your preferences enabling or disabling cookie by category', [], 'Modules.Cookieconsent.Modal') ]);
+        array_push($sections, 
+            [
+                'title' => $this->trans('Your consent details', [], 'Modules.Cookieconsent.Modal'),
+                'description' => '<p>' . $this->trans('Consent Id', [], 'Modules.Cookieconsent.Modal') . ': <span id="consent-id">-</span></p><p>' . $this->trans('Consent Date', [], 'Modules.Cookieconsent.Modal') . ': <span id="consent-timestamp">-</span></p><p>' . $this->trans('Last Update', [], 'Modules.Cookieconsent.Modal') . ': <span id="last-consent-timestamp">-</span></p>'
+            ],
+            [
+                'title' => $this->trans('More information', [], 'Modules.Cookieconsent.Modal'),
+                'description'=> $this->trans('For any queries in relation to my policy on cookies and your choices, please <a href="#contact-page">contact us</a>', [], 'Modules.Cookieconsent.Modal'),
+            ]
+        );
+
         $this->context->smarty->assign(
             [
                 'theme' => Configuration::get(self::CC_THEME),
@@ -546,6 +558,29 @@ class CookieConsent extends Module
                     'auto_language' => 'browser',
                     'categories' => $cookieCategories,
                     'sections' => $sections,
+                    'language' => [
+                        'default' => $this->context->language->language_code,
+                        'translations'=> [
+                            $this->context->language->language_code => [
+                                'consentModal' => [
+                                    'title' => $this->trans('This website use cookies', [], 'Modules.Cookieconsent.Modal'),
+                                    'description' => $this->trans('We use cookies to personalise content and ads, provide social media features and analyse our traffic. We also provide information about how you use our site to our web analytics, advertising and social media partners, who may combine it with other information you have provided to them or that they have collected based on your use of their services.', [], 'Modules.Cookieconsent.Modal'),
+                                    'acceptAllBtn' => $this->trans('Accept all', [], 'Modules.Cookieconsent.Modal'),
+                                    'acceptNecessaryBtn' => $this->trans('Reject all', [], 'Modules.Cookieconsent.Modal'),
+                                    'showPreferencesBtn' => $this->trans('Manage preferences', [], 'Modules.Cookieconsent.Modal'),
+                                ],
+                                'preferencesModal' => [
+                                    'title' => $this->trans('Manage cookie preferences', [], 'Modules.Cookieconsent.Modal'),
+                                    'acceptAllBtn' => $this->trans('Accept all', [], 'Modules.Cookieconsent.Modal'),
+                                    'acceptNecessaryBtn' => $this->trans('Reject all', [], 'Modules.Cookieconsent.Modal'),
+                                    'savePreferencesBtn' => $this->trans('Accept current selection', [], 'Modules.Cookieconsent.Modal'),
+                                    'closeIconLabel' => $this->trans('Close', [], 'Modules.Cookieconsent.Modal'),
+                                    'sections' => $sections
+                                ]
+                            ]
+                        ]
+                    ]
+
                 ]),
             ]
         );

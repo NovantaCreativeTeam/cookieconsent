@@ -19,40 +19,5 @@ CookieConsent.run({
     disablePageInteraction: window.cc_config.disablePageInteraction,
     autoClearCookies: window.cc_config.autoClearCookies,
     guiOptions: window.cc_config.guiOptions,
-    language: {
-        default: 'en',
-        translations: {
-            en: {
-                consentModal: {
-                    title: 'We use cookies',
-                    description: 'Cookie modal description',
-                    acceptAllBtn: 'Accept all',
-                    acceptNecessaryBtn: 'Reject all',
-                    showPreferencesBtn: 'Manage Individual preferences'
-                },
-                preferencesModal: {
-                    title: 'Manage cookie preferences',
-                    acceptAllBtn: 'Accept all',
-                    acceptNecessaryBtn: 'Reject all',
-                    savePreferencesBtn: 'Accept current selection',
-                    closeIconLabel: 'Close modal',
-                    sections: [
-                        {
-                            title: 'Somebody said ... cookies?',
-                            description: 'I want one!'
-                        },
-                        ...window.cc_config.sections,
-                        {
-                            title: "Your consent details",
-                            description: '<p>consent id: <span id="consent-id">-</span></p><p>consent date: <span id="consent-timestamp">-</span></p><p>last update: <span id="last-consent-timestamp">-</span></p>'
-                        },
-                        {
-                            title: 'More information',
-                            description: 'For any queries in relation to my policy on cookies and your choices, please <a href="#contact-page">contact us</a>'
-                        }
-                    ]
-                }
-            }
-        }
-    }
+    language: window.cc_config.language
 })

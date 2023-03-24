@@ -79,5 +79,3 @@ module.exports = (env, argv) => {
 
     return config;
 }
-
-//module.exports = config;
