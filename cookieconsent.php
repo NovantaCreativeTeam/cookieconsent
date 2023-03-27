@@ -41,6 +41,7 @@ class CookieConsent extends Module
     const CC_DISPLAY_SECTION_ANALYTICS = "CC_DISPLAY_SECTION_ANALYTICS";
     const CC_AUTO_CLEAR = "CC_AUTO_CLEAR";
     const CC_THEME = 'CC_THEME';
+    const CC_GTM_CONSENT_MODE = 'CC_GTM_CONSENT_MODE';
 
     public function __construct()
     {
@@ -74,6 +75,7 @@ class CookieConsent extends Module
         Configuration::updateValue(self::CC_DISPLAY_SECTION_SECURITY, true);
         Configuration::updateValue(self::CC_AUTO_CLEAR, false);
         Configuration::updateValue(self::CC_THEME, 'light');
+        Configuration::updateValue(self::CC_GTM_CONSENT_MODE, false);
 
         return parent::install() &&
             $this->registerHook('displayHeader') &&
@@ -399,6 +401,25 @@ class CookieConsent extends Module
                             'name' => 'label',
                         ),
                     ),
+                    array(
+                        'type' => 'switch',
+                        'label' => $this->trans('Enable GTM Consent Mode', [], 'Modules.Cookieconsent.Admin'),
+                        'name' => self::CC_GTM_CONSENT_MODE,
+                        'is_bool' => true,
+                        'desc' => $this->trans('For more information view https://support.google.com/tagmanager/answer/10718549?hl=en', [], 'Modules.Cookieconsent.Admin'),
+                        'values' => array(
+                            array(
+                                'id' => 'active_on',
+                                'value' => true,
+                                'label' => $this->trans('Enabled', [], 'Modules.Cookieconsent.Admin')
+                            ),
+                            array(
+                                'id' => 'active_off',
+                                'value' => false,
+                                'label' => $this->trans('Disabled', [], 'Modules.Cookieconsent.Admin')
+                            )
+                        ),
+                    ),
                 ),
                 'submit' => array(
                     'title' => $this->trans('Save', [], 'Modules.Cookieconsent.Admin'),
@@ -423,7 +444,8 @@ class CookieConsent extends Module
             self::CC_DISPLAY_SECTION_FUNCTION => Configuration::get(self::CC_DISPLAY_SECTION_FUNCTION, null, null, null, true),
             self::CC_DISPLAY_SECTION_CUSTOMISE => Configuration::get(self::CC_DISPLAY_SECTION_CUSTOMISE, null, null, null, true),
             self::CC_DISPLAY_SECTION_SECURITY => Configuration::get(self::CC_DISPLAY_SECTION_SECURITY, null, null, null, true),
-            self::CC_THEME => Configuration::get(self::CC_THEME, null, null, null, true)
+            self::CC_THEME => Configuration::get(self::CC_THEME, null, null, null, true),
+            self::CC_GTM_CONSENT_MODE => Configuration::get(self::CC_GTM_CONSENT_MODE, null, null, null, false)
         );
     }
 
@@ -446,11 +468,14 @@ class CookieConsent extends Module
     {
         $this->context->controller->registerStylesheet('cookie-consent-css', $this->_path . '/views/css/front.css');
 
-        $this->context->controller->registerStylesheet('cookieconsent-css', 'https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@v3.0.0-rc.13/dist/cookieconsent.css', ['server' => 'remote']);
-        $this->context->controller->registerJavascript('cookieconsent-js', 'https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@v3.0.0-rc.13/dist/cookieconsent.umd.js', ['server' => 'remote', 'position' => 'bottom']);
-        $this->context->controller->registerJavascript('cookieconsent-init', $this->_path . '/views/js/cookieconsent-init.min.js', ['position' => 'bottom']);
-        $this->context->controller->registerJavascript('gtag-consent-init', $this->_path . '/views/js/gtag-consent-init.min.js', ['position' => 'head', 'priority' => 1]);
-
+        $this->context->controller->registerStylesheet('cookieconsent-css', 'https://cdn.jsdelivr.net/npm/vanilla-cookieconsent@3.0.0-rc.13/dist/cookieconsent.min.css', ['server' => 'remote']);
+        $this->context->controller->registerJavascript('cookieconsent-js', 'https://cdn.jsdelivr.net/npm/vanilla-cookieconsent@3.0.0-rc.13/dist/cookieconsent.umd.min.js', ['server' => 'remote', 'position' => 'bottom', 'attributes' => 'defer']);
+        $this->context->controller->registerJavascript('cookieconsent-init', $this->_path . '/views/js/cookieconsent-init.min.js', ['position' => 'bottom', 'attributes' => 'defer']);
+        
+        if(Configuration::get(self::CC_GTM_CONSENT_MODE)) {
+            $this->context->controller->registerJavascript('gtag-consent-init', $this->_path . '/views/js/gtag-consent-init.min.js', ['position' => 'head', 'priority' => 1]);
+        }
+        
         $cookieCategories = [];
         $sections = [];
         if(Configuration::get(self::CC_DISPLAY_SECTION_FUNCTION, true)) {
@@ -541,30 +566,32 @@ class CookieConsent extends Module
                             'layout' =>  Configuration::get(self::CC_CONSENT_LAYOUT, null, null, null, "cloud"),
                             'position' => Configuration::get(self::CC_CONSENT_POSITION, null, null, null, "bottom right"),
                             'equalWeightButtons' => false,
-                            'flipButtons' => false
+                            'flipButtons' => true
                         ],
                         "preferencesModal" => [
-                            'layout' => Configuration::get(self::CC_SETTINGS_LAYOUT, null, null, null, "box")
+                            'layout' => Configuration::get(self::CC_SETTINGS_LAYOUT, null, null, null, "box"),
+                            'flipButtons' => true
                         ],
                     ],
                     'auto_language' => 'browser',
                     'categories' => $cookieCategories,
                     'sections' => $sections,
                     'language' => [
-                        'default' => $this->context->transanguage->transanguage_code,
+                        'default' => $this->context->language->language_code,
                         'translations'=> [
-                            $this->context->transanguage->transanguage_code => [
+                            $this->context->language->language_code => [
                                 'consentModal' => [
                                     'title' => $this->trans('This website use cookies', [], 'Modules.Cookieconsent.Modal'),
                                     'description' => $this->trans('We use cookies to personalise content and ads, provide social media features and analyse our traffic. We also provide information about how you use our site to our web analytics, advertising and social media partners, who may combine it with other information you have provided to them or that they have collected based on your use of their services.', [], 'Modules.Cookieconsent.Modal'),
                                     'acceptAllBtn' => $this->trans('Accept all', [], 'Modules.Cookieconsent.Modal'),
-                                    'acceptNecessaryBtn' => $this->trans('Reject all', [], 'Modules.Cookieconsent.Modal'),
+                                    // 'acceptNecessaryBtn' => $this->trans('Reject all', [], 'Modules.Cookieconsent.Modal'),
                                     'showPreferencesBtn' => $this->trans('Manage preferences', [], 'Modules.Cookieconsent.Modal'),
+                                    'closeIconLabel' => $this->trans('Close and Reject', [], 'Modules.Cookieconsent.Modal'),
                                 ],
                                 'preferencesModal' => [
                                     'title' => $this->trans('Manage cookie preferences', [], 'Modules.Cookieconsent.Modal'),
                                     'acceptAllBtn' => $this->trans('Accept all', [], 'Modules.Cookieconsent.Modal'),
-                                    'acceptNecessaryBtn' => $this->trans('Reject all', [], 'Modules.Cookieconsent.Modal'),
+                                    //'acceptNecessaryBtn' => $this->trans('Reject all', [], 'Modules.Cookieconsent.Modal'),
                                     'savePreferencesBtn' => $this->trans('Accept current selection', [], 'Modules.Cookieconsent.Modal'),
                                     'closeIconLabel' => $this->trans('Close', [], 'Modules.Cookieconsent.Modal'),
                                     'sections' => $sections
