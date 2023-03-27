@@ -209,7 +209,7 @@ class CookieConsent extends Module
                     ),
                     array(
                         'type' => 'select',
-                        'label' => $this->trans('Layout'),
+                        'label' => $this->trans('Layout', [], 'Modules.Cookieconsent.Admin'),
                         'name' => self::CC_CONSENT_LAYOUT,
                         'desc' => $this->trans('Choose layout', [], 'Modules.Cookieconsent.Admin'),
                         'options' => array(
@@ -383,7 +383,7 @@ class CookieConsent extends Module
                     ),
                     array(
                         'type' => 'select',
-                        'label' => $this->trans('Theme'),
+                        'label' => $this->trans('Theme', [], 'Modules.Cookieconsent.Admin'),
                         'name' => self::CC_THEME,
                         'desc' => $this->trans('Choose cookie consent theme', [], 'Modules.Cookieconsent.Admin'),
                         'options' => array(
