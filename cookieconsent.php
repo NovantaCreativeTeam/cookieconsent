@@ -42,26 +42,24 @@ class CookieConsent extends Module
     const CC_AUTO_CLEAR = "CC_AUTO_CLEAR";
     const CC_THEME = 'CC_THEME';
 
-    protected $config_form = false;
-
     public function __construct()
     {
         $this->name = 'cookieconsent';
         $this->tab = 'front_office_features';
         $this->version = '1.0.0';
         $this->author = 'Novanta';
-        /**
-         * Set $this->bootstrap to true if your module is compliant with bootstrap (PrestaShop 1.6)
-         */
-        $this->bootstrap = true;
-
         $this->displayName = ('Cookie Consent');
-        $this->description = ('This module is a wrapper for cookie-consent plugin');
-
+        $this->description = ('This module install cookie consent to manage user preferences with GTM Consent Mode compatibility');
         $this->ps_versions_compliancy = array('min' => '1.7', 'max' => _PS_VERSION_);
+        $this->bootstrap = true;
 
         parent::__construct();
     } 
+
+    public function isUsingNewTranslationSystem()
+    {
+        return true;
+    }
 
     public function install()
     {
@@ -92,18 +90,12 @@ class CookieConsent extends Module
      */
     public function getContent()
     {
-        /**
-         * If values have been submitted in the form, process.
-         */
         if (((bool)Tools::isSubmit('submitCCModule')) == true) {
             $this->postProcess();
         }
 
         $this->context->smarty->assign('module_dir', $this->_path);
-
-        $output = $this->context->smarty->fetch($this->local_path.'views/templates/admin/configure.tpl');
-
-        return $output.$this->renderForm();
+        return $this->renderForm();
     }
 
     /**
@@ -142,71 +134,71 @@ class CookieConsent extends Module
         return array(
             'form' => array(
                 'legend' => array(
-                'title' => $this->l('Settings'),
+                'title' => $this->trans('Settings', [], 'Modules.Cookieconsent.Admin'),
                 'icon' => 'icon-cogs',
                 ),
                 'input' => array(
                     array(
                         'type' => 'switch',
-                        'label' => $this->l('Force consent'),
+                        'label' => $this->trans('Force consent', [], 'Modules.Cookieconsent.Admin'),
                         'name' => self::CC_FORCE_CONSENT,
                         'is_bool' => true,
-                        'desc' => $this->l('Force consent before interact with page'),
+                        'desc' => $this->trans('Force consent before interact with page', [], 'Modules.Cookieconsent.Admin'),
                         'values' => array(
                             array(
                                 'id' => 'active_on',
                                 'value' => true,
-                                'label' => $this->l('Enabled')
+                                'label' => $this->trans('Enabled', [], 'Modules.Cookieconsent.Admin')
                             ),
                             array(
                                 'id' => 'active_off',
                                 'value' => false,
-                                'label' => $this->l('Disabled')
+                                'label' => $this->trans('Disabled', [], 'Modules.Cookieconsent.Admin')
                             )
                         ),
                     ),
                     array(
                         'type' => 'select',
-                        'label' => $this->l('Position'),
+                        'label' => $this->trans('Position', [], 'Modules.Cookieconsent.Admin'),
                         'name' => self::CC_CONSENT_POSITION,
-                        'desc' => $this->l('Choose position of consent modal'),
+                        'desc' => $this->trans('Choose position of consent modal', [], 'Modules.Cookieconsent.Admin'),
                         'options' => array(
                             'query' => [
                                 array(
                                     'id_option' => 'bottom left',
-                                    'label' => $this->l('Bottom Left')
+                                    'label' => $this->trans('Bottom Left', [], 'Modules.Cookieconsent.Admin')
                                 ),
                                 array(
                                     'id_option' => 'bottom center',
-                                    'label' => $this->l('Bottom Center')
+                                    'label' => $this->trans('Bottom Center', [], 'Modules.Cookieconsent.Admin')
                                 ),
                                 array(
                                     'id_option' => 'bottom right',
-                                    'label' => $this->l('Bottom Right')
+                                    'label' => $this->trans('Bottom Right', [], 'Modules.Cookieconsent.Admin')
                                 ),
                                 array(
                                     'id_option' => 'middle left',
-                                    'label' => $this->l('Middle Left')
+                                    'label' => $this->trans('Middle Left', [], 'Modules.Cookieconsent.Admin')
                                 ),
                                 array(
                                     'id_option' => 'middle center',
-                                    'label' => $this->l('Middle Center')
+                                    'label' => $this->trans('Middle Center', [], 'Modules.Cookieconsent.Admin')
                                 ),
                                 array(
                                     'id_option' => 'middle right',
-                                    'label' => $this->l('Middle Right')
+                                    'label' => $this->trans('Middle Right', [], 'Modules.Cookieconsent.Admin')
                                 ),
                                 array(
                                     'id_option' => 'top left',
-                                    'label' => $this->l('Top Left')
+                                    'label' => $this->trans('Top Left', [], 'Modules.Cookieconsent.Admin')
                                 ),
                                 array(
                                     'id_option' => 'top center',
-                                    'label' => $this->l('Top Center')
+                                    'label' => $this->trans('Top Center', [], 'Modules.Cookieconsent.Admin')
                                 ),
                                 array(
                                     'id_option' => 'top right',
-                                    'label' => $this->l('Top Right')
+                                    'label' => $this->trans('Top Right', [], 'Modules.Cookieconsent.Admin')
                                 ),
                             ],
                                 'id' => 'id_option',
@@ -215,38 +207,38 @@ class CookieConsent extends Module
                     ),
                     array(
                         'type' => 'select',
-                        'label' => $this->l('Layout'),
+                        'label' => $this->trans('Layout'),
                         'name' => self::CC_CONSENT_LAYOUT,
-                        'desc' => $this->l('Choose layout'),
+                        'desc' => $this->trans('Choose layout', [], 'Modules.Cookieconsent.Admin'),
                         'options' => array(
                             'query' => [
                                 array(
                                     'id_option' => 'cloud',
-                                    'label' => $this->l('Cloud')
+                                    'label' => $this->trans('Cloud', [], 'Modules.Cookieconsent.Admin')
                                 ),
                                 array(
                                     'id_option' => 'cloud inline',
-                                    'label' => $this->l('Cloud Inline')
+                                    'label' => $this->trans('Cloud Inline', [], 'Modules.Cookieconsent.Admin')
                                 ),
                                 array(
                                     'id_option' => 'box',
-                                    'label' => $this->l('Box')
+                                    'label' => $this->trans('Box', [], 'Modules.Cookieconsent.Admin')
                                 ),
                                 array(
                                     'id_option' => 'box inline',
-                                    'label' => $this->l('Box Inline')
+                                    'label' => $this->trans('Box Inline', [], 'Modules.Cookieconsent.Admin')
                                 ),
                                 array(
                                     'id_option' => 'box wide',
-                                    'label' => $this->l('Box Wide')
+                                    'label' => $this->trans('Box Wide', [], 'Modules.Cookieconsent.Admin')
                                 ),
                                 array(
                                     'id_option' => 'bar',
-                                    'label' => $this->l('Bar')
+                                    'label' => $this->trans('Bar', [], 'Modules.Cookieconsent.Admin')
                                 ),
                                 array(
                                     'id_option' => 'bar wide',
-                                    'label' => $this->l('Bar Wide')
+                                    'label' => $this->trans('Bar Wide', [], 'Modules.Cookieconsent.Admin')
                                 )
                             ],
                                 'id' => 'id_option',
@@ -255,18 +247,18 @@ class CookieConsent extends Module
                     ),
                     array(
                         'type' => 'select',
-                        'label' => $this->l('Settings modal Layout'),
+                        'label' => $this->trans('Settings modal Layout', [], 'Modules.Cookieconsent.Admin'),
                         'name' => self::CC_SETTINGS_LAYOUT,
-                        'desc' => $this->l('Choose layout of settings'),
+                        'desc' => $this->trans('Choose layout of settings', [], 'Modules.Cookieconsent.Admin'),
                         'options' => array(
                             'query' => [
                                 array(
                                     'id_option' => 'box',
-                                    'label' => $this->l('Box')
+                                    'label' => $this->trans('Box', [], 'Modules.Cookieconsent.Admin')
                                 ),
                                 array(
                                     'id_option' => 'bar',
-                                    'label' => $this->l('Bar')
+                                    'label' => $this->trans('Bar', [], 'Modules.Cookieconsent.Admin')
                                 ),
                             ],
                                 'id' => 'id_option',
@@ -275,132 +267,132 @@ class CookieConsent extends Module
                     ),
                     array(
                         'type' => 'switch',
-                        'label' => $this->l('Enable Functionality Cookie section'),
+                        'label' => $this->trans('Enable Functionality Cookie section', [], 'Modules.Cookieconsent.Admin'),
                         'name' => self::CC_DISPLAY_SECTION_FUNCTION,
                         'is_bool' => true,
-                        'desc' => $this->l('Enable Functionality Cookie section in front office'),
+                        'desc' => $this->trans('Enable Functionality Cookie section in front office', [], 'Modules.Cookieconsent.Admin'),
                         'values' => array(
                             array(
                                 'id' => 'active_on',
                                 'value' => true,
-                                'label' => $this->l('Enabled')
+                                'label' => $this->trans('Enabled', [], 'Modules.Cookieconsent.Admin')
                             ),
                             array(
                                 'id' => 'active_off',
                                 'value' => false,
-                                'label' => $this->l('Disabled')
+                                'label' => $this->trans('Disabled', [], 'Modules.Cookieconsent.Admin')
                             )
                         ),
                     ),
                     array(
                         'type' => 'switch',
-                        'label' => $this->l('Enable Customise Cookie section'),
+                        'label' => $this->trans('Enable Customise Cookie section', [], 'Modules.Cookieconsent.Admin'),
                         'name' => self::CC_DISPLAY_SECTION_CUSTOMISE,
                         'is_bool' => true,
-                        'desc' => $this->l('Enable Customise Cookie section in front office'),
+                        'desc' => $this->trans('Enable Customise Cookie section in front office', [], 'Modules.Cookieconsent.Admin'),
                         'values' => array(
                             array(
                                 'id' => 'active_on',
                                 'value' => true,
-                                'label' => $this->l('Enabled')
+                                'label' => $this->trans('Enabled', [], 'Modules.Cookieconsent.Admin')
                             ),
                             array(
                                 'id' => 'active_off',
                                 'value' => false,
-                                'label' => $this->l('Disabled')
+                                'label' => $this->trans('Disabled', [], 'Modules.Cookieconsent.Admin')
                             )
                         ),
                     ),
                     array(
                         'type' => 'switch',
-                        'label' => $this->l('Enable Security Cookie section'),
+                        'label' => $this->trans('Enable Security Cookie section', [], 'Modules.Cookieconsent.Admin'),
                         'name' => self::CC_DISPLAY_SECTION_SECURITY,
                         'is_bool' => true,
-                        'desc' => $this->l('Enable Security Cookie section in front office'),
+                        'desc' => $this->trans('Enable Security Cookie section in front office', [], 'Modules.Cookieconsent.Admin'),
                         'values' => array(
                             array(
                                 'id' => 'active_on',
                                 'value' => true,
-                                'label' => $this->l('Enabled')
+                                'label' => $this->trans('Enabled', [], 'Modules.Cookieconsent.Admin')
                             ),
                             array(
                                 'id' => 'active_off',
                                 'value' => false,
-                                'label' => $this->l('Disabled')
+                                'label' => $this->trans('Disabled', [], 'Modules.Cookieconsent.Admin')
                             )
                         ),
                     ),
                     array(
                         'type' => 'switch',
-                        'label' => $this->l('Enable Ads Cookie section'),
+                        'label' => $this->trans('Enable Ads Cookie section', [], 'Modules.Cookieconsent.Admin'),
                         'name' => self::CC_DISPLAY_SECTION_ADS,
                         'is_bool' => true,
-                        'desc' => $this->l('Enable Ads Cookie section in front office'),
+                        'desc' => $this->trans('Enable Ads Cookie section in front office', [], 'Modules.Cookieconsent.Admin'),
                         'values' => array(
                             array(
                                 'id' => 'active_on',
                                 'value' => true,
-                                'label' => $this->l('Enabled')
+                                'label' => $this->trans('Enabled', [], 'Modules.Cookieconsent.Admin')
                             ),
                             array(
                                 'id' => 'active_off',
                                 'value' => false,
-                                'label' => $this->l('Disabled')
+                                'label' => $this->trans('Disabled', [], 'Modules.Cookieconsent.Admin')
                             )
                         ),
                     ),
                     array(
                         'type' => 'switch',
-                        'label' => $this->l('Enable Analytics Cookie section'),
+                        'label' => $this->trans('Enable Analytics Cookie section', [], 'Modules.Cookieconsent.Admin'),
                         'name' => self::CC_DISPLAY_SECTION_ANALYTICS,
                         'is_bool' => true,
-                        'desc' => $this->l('Enable Analytics Cookie section in front office'),
+                        'desc' => $this->trans('Enable Analytics Cookie section in front office', [], 'Modules.Cookieconsent.Admin'),
                         'values' => array(
                             array(
                                 'id' => 'active_on',
                                 'value' => true,
-                                'label' => $this->l('Enabled')
+                                'label' => $this->trans('Enabled', [], 'Modules.Cookieconsent.Admin')
                             ),
                             array(
                                 'id' => 'active_off',
                                 'value' => false,
-                                'label' => $this->l('Disabled')
+                                'label' => $this->trans('Disabled', [], 'Modules.Cookieconsent.Admin')
                             )
                         ),
                     ),
                     array(
                         'type' => 'switch',
-                        'label' => $this->l('Auto Clear Cookie'),
+                        'label' => $this->trans('Auto Clear Cookie', [], 'Modules.Cookieconsent.Admin'),
                         'name' => self::CC_AUTO_CLEAR,
                         'is_bool' => true,
-                        'desc' => $this->l('Enable Auto Clear Cookies if refused'),
+                        'desc' => $this->trans('Enable Auto Clear Cookies if refused', [], 'Modules.Cookieconsent.Admin'),
                         'values' => array(
                             array(
                                 'id' => 'active_on',
                                 'value' => true,
-                                'label' => $this->l('Enabled')
+                                'label' => $this->trans('Enabled', [], 'Modules.Cookieconsent.Admin')
                             ),
                             array(
                                 'id' => 'active_off',
                                 'value' => false,
-                                'label' => $this->l('Disabled')
+                                'label' => $this->trans('Disabled', [], 'Modules.Cookieconsent.Admin')
                             )
                         ),
                     ),
                     array(
                         'type' => 'select',
-                        'label' => $this->l('Theme'),
+                        'label' => $this->trans('Theme'),
                         'name' => self::CC_THEME,
-                        'desc' => $this->l('Choose cookie consent theme'),
+                        'desc' => $this->trans('Choose cookie consent theme', [], 'Modules.Cookieconsent.Admin'),
                         'options' => array(
                             'query' => [
                                 array(
                                     'id_option' => 'light',
-                                    'label' => $this->l('Light Theme')
+                                    'label' => $this->trans('Light Theme', [], 'Modules.Cookieconsent.Admin')
                                 ),
                                 array(
                                     'id_option' => 'dark',
-                                    'label' => $this->l('Dark Theme')
+                                    'label' => $this->trans('Dark Theme', [], 'Modules.Cookieconsent.Admin')
                                 ),
                             ],
                             'id' => 'id_option',
@@ -409,7 +401,7 @@ class CookieConsent extends Module
                     ),
                 ),
                 'submit' => array(
-                    'title' => $this->l('Save'),
+                    'title' => $this->trans('Save', [], 'Modules.Cookieconsent.Admin'),
                 ),
             ),
         );
@@ -559,9 +551,9 @@ class CookieConsent extends Module
                     'categories' => $cookieCategories,
                     'sections' => $sections,
                     'language' => [
-                        'default' => $this->context->language->language_code,
+                        'default' => $this->context->transanguage->transanguage_code,
                         'translations'=> [
-                            $this->context->language->language_code => [
+                            $this->context->transanguage->transanguage_code => [
                                 'consentModal' => [
                                     'title' => $this->trans('This website use cookies', [], 'Modules.Cookieconsent.Modal'),
                                     'description' => $this->trans('We use cookies to personalise content and ads, provide social media features and analyse our traffic. We also provide information about how you use our site to our web analytics, advertising and social media partners, who may combine it with other information you have provided to them or that they have collected based on your use of their services.', [], 'Modules.Cookieconsent.Modal'),
@@ -587,6 +579,9 @@ class CookieConsent extends Module
         return $this->display(__FILE__, "views/templates/front/hook/displayHeader.tpl");
     }
 
+    /**
+     * Add Manager Preferences button to edit cookie preferences
+     */
     public function hookDisplayFooter()
     {
         return $this->display(__FILE__, "views/templates/front/hook/displayFooter.tpl");
