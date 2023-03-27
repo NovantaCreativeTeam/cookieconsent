@@ -526,7 +526,7 @@ class CookieConsent extends Module
             ];
         }
 
-        array_unshift( $sections, [ 'description' => $this->trans('From this section you can manager your preferences enabling or disabling cookie by category', [], 'Modules.Cookieconsent.Modal') ]);
+        array_unshift( $sections, [ 'description' => $this->trans('From this section you can manager your preferences enabling or disabling cookie by category. You can change your preferences in any time clicking on button "Manager Preferences"', [], 'Modules.Cookieconsent.Modal') ]);
         array_push($sections, 
             [
                 'title' => $this->trans('Your consent details', [], 'Modules.Cookieconsent.Modal'),
@@ -534,7 +534,7 @@ class CookieConsent extends Module
             ],
             [
                 'title' => $this->trans('More information', [], 'Modules.Cookieconsent.Modal'),
-                'description'=> $this->trans('For any queries in relation to my policy on cookies and your choices, please <a href="#contact-page">contact us</a>', [], 'Modules.Cookieconsent.Modal'),
+                'description'=> $this->trans('For any queries in relation to my policy on cookies and your choices, please [1]contact us[/1]', ['[1]' => '<a href="' . $this->context->link->getPageLink('contact') . '" target="_blank">', '[/1]' => '</a>'], 'Modules.Cookieconsent.Modal'),
             ]
         );
 
