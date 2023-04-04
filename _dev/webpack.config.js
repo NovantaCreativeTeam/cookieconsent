@@ -7,6 +7,7 @@ const config = {
     entry: {
         'cookieconsent-init': './src/index.js',
         'gtag-consent-init': './src/gtag-consent-init.js',
+        'fb-consent-init': './src/fb-consent-init.js',
     },
     output: {
         path: path.resolve(__dirname, '../views/js'),

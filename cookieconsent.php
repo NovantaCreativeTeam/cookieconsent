@@ -42,12 +42,13 @@ class CookieConsent extends Module
     const CC_AUTO_CLEAR = "CC_AUTO_CLEAR";
     const CC_THEME = 'CC_THEME';
     const CC_GTM_CONSENT_MODE = 'CC_GTM_CONSENT_MODE';
+    const CC_FB_CONSENT_MODE = 'CC_FB_CONSENT_MODE';
 
     public function __construct()
     {
         $this->name = 'cookieconsent';
         $this->tab = 'front_office_features';
-        $this->version = '1.0.0';
+        $this->version = '1.0.1';
         $this->author = 'Novanta';
         $this->displayName = ('Cookie Consent');
         $this->description = ('This module install cookie consent to manage user preferences with GTM Consent Mode compatibility');
@@ -76,6 +77,7 @@ class CookieConsent extends Module
         Configuration::updateValue(self::CC_AUTO_CLEAR, false);
         Configuration::updateValue(self::CC_THEME, 'light');
         Configuration::updateValue(self::CC_GTM_CONSENT_MODE, false);
+        Configuration::updateValue(self::CC_FB_CONSENT_MODE, false);
 
         return parent::install() &&
             $this->registerHook('displayHeader') &&
@@ -420,6 +422,24 @@ class CookieConsent extends Module
                             )
                         ),
                     ),
+                    array(
+                        'type' => 'switch',
+                        'label' => $this->trans('Enable FB Consent Mode', [], 'Modules.Cookieconsent.Admin'),
+                        'name' => self::CC_FB_CONSENT_MODE,
+                        'is_bool' => true,
+                        'values' => array(
+                            array(
+                                'id' => 'active_on',
+                                'value' => true,
+                                'label' => $this->trans('Enabled', [], 'Modules.Cookieconsent.Admin')
+                            ),
+                            array(
+                                'id' => 'active_off',
+                                'value' => false,
+                                'label' => $this->trans('Disabled', [], 'Modules.Cookieconsent.Admin')
+                            )
+                        ),
+                    ),
                 ),
                 'submit' => array(
                     'title' => $this->trans('Save', [], 'Modules.Cookieconsent.Admin'),
@@ -445,7 +465,8 @@ class CookieConsent extends Module
             self::CC_DISPLAY_SECTION_CUSTOMISE => Configuration::get(self::CC_DISPLAY_SECTION_CUSTOMISE, null, null, null, true),
             self::CC_DISPLAY_SECTION_SECURITY => Configuration::get(self::CC_DISPLAY_SECTION_SECURITY, null, null, null, true),
             self::CC_THEME => Configuration::get(self::CC_THEME, null, null, null, true),
-            self::CC_GTM_CONSENT_MODE => Configuration::get(self::CC_GTM_CONSENT_MODE, null, null, null, false)
+            self::CC_GTM_CONSENT_MODE => Configuration::get(self::CC_GTM_CONSENT_MODE, null, null, null, false),
+            self::CC_FB_CONSENT_MODE => Configuration::get(self::CC_FB_CONSENT_MODE, null, null, null, false)
         );
     }
 
@@ -474,6 +495,10 @@ class CookieConsent extends Module
         
         if(Configuration::get(self::CC_GTM_CONSENT_MODE)) {
             $this->context->controller->registerJavascript('gtag-consent-init', $this->_path . '/views/js/gtag-consent-init.min.js', ['position' => 'head', 'priority' => 1]);
+        }
+
+        if(Configuration::get(self::CC_FB_CONSENT_MODE)) {
+            $this->context->controller->registerJavascript('fb-consent-init', $this->_path . '/views/js/fb-consent-init.min.js', ['position' => 'head', 'priority' => 2]);
         }
         
         $cookieCategories = [];
