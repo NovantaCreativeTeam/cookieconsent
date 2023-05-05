@@ -494,7 +494,7 @@ class CookieConsent extends Module
         $this->context->controller->registerJavascript('cookieconsent-init', $this->_path . '/views/js/cookieconsent-init.min.js', ['position' => 'bottom', 'attributes' => 'defer']);
         
         if(Configuration::get(self::CC_GTM_CONSENT_MODE)) {
-            $this->context->controller->registerJavascript('gtag-consent-init', $this->_path . '/views/js/gtag-consent-init.min.js', ['position' => 'head', 'priority' => 1]);
+            $this->context->controller->registerJavascript('gtag-consent-handler', $this->_path . '/views/js/gtag-consent-init.min.js', ['position' => 'bottom']);
         }
 
         if(Configuration::get(self::CC_FB_CONSENT_MODE)) {
