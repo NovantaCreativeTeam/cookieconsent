@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file original="admin0195ydhsc" source-language="it-IT" target-language="it-IT" datatype="plaintext">
+    <body>
+      <trans-unit id="2822e1388de026db6f168058e9e49cdc">
+        <source>Auto Clear Cookie</source>
+        <target>Auto Clear Cookie</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="14803c6f2ec9d96347bade4419eef48a">
+        <source>Bar Wide</source>
+        <target>Bar Wide</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="ddc35f88fa71b6ef142ae61f35364653">
+        <source>Bar</source>
+        <target>Bar</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="8b3a19d56677d8f6ac100d0174302b91">
+        <source>Box Wide</source>
+        <target>Box Wide</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="721e5ea131bfe0493f56e97465a2daac">
+        <source>Box Inline</source>
+        <target>Box Inline</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="3cfce651e667ab85486dd42a8185f98a">
+        <source>Box</source>
+        <target>Box</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="a5aea5bc0d8e94a476585b2f5d926e7a">
+        <source>Cloud Inline</source>
+        <target>Cloud Inline</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="c8e2277ecfb1427838c488c217f99466">
+        <source>Cloud</source>
+        <target>Cloud</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="ebd9bec4d70abc789d439c1f136b0538">
+        <source>Layout</source>
+        <target>Layout</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="f4f70727dc34561dfde1a3c529b6205c">
+        <source>Settings</source>
+        <target>Impostazioni</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="72ac5838630fa736bea8124132fc5f2c">
+        <source>Force consent</source>
+        <target>Forza consenso</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="285eaeb694c92256d034ab5120da310c">
+        <source>Force consent before interact with page</source>
+        <target>Forzando il consenso l'utente dovrà esprimere una preferenza prima di interagire con la pagina</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="00d23a76e43b46dae9ec7aa9dcbebb32">
+        <source>Enabled</source>
+        <target>Abilitato</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="b9f5c797ebbf55adccdd8539a65a0241">
+        <source>Disabled</source>
+        <target>Disabilitato</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="52f5e0bc3859bc5f5e25130b6c7e8881">
+        <source>Position</source>
+        <target>Posizione</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="0ab9711b8d231a41a9bb8e8ec897ddab">
+        <source>Choose position of consent modal</source>
+        <target>Seleziona la posizione del banner</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="7eb5542553fa5e5db4656e1c16f1316d">
+        <source>Bottom Left</source>
+        <target>In Basso a Sinistra</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="a088c172f6a893ef408116488ef672cd">
+        <source>Bottom Center</source>
+        <target>In Basso al Centro</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="4d297f5df921dca388a17e3336cad50f">
+        <source>Bottom Right</source>
+        <target>In Basso a Destra</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="a89f2d820798340b788cd22cab17ac38">
+        <source>Middle Left</source>
+        <target>in Mezzo a Sinistra</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="16d09375cdf65cbdbb8f81b03e1d635d">
+        <source>Middle Center</source>
+        <target>in Mezzo al Centro</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="ee2619ed87b3616655fa2a0f312af1dc">
+        <source>Middle Right</source>
+        <target>in Mezzo a Destra</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="ac71274aea488e58bea2a8c716fc578f">
+        <source>Top Left</source>
+        <target>in Alto a Sinistra</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="a20c9be95933e1fcf306b4b62d3792ea">
+        <source>Top Center</source>
+        <target>in Alto al Centro</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="5f9f678446e1abe7e062b056e755e059">
+        <source>Top Right</source>
+        <target>in Alto a Destra</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="16b195938747fe7edf981168d9bb3a89">
+        <source>Choose layout</source>
+        <target>Seleziona un layout</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="f19b3d59780b9c361c329f85c1053ef5">
+        <source>Settings modal Layout</source>
+        <target>Impostazioni layout della finestra delle preferenze</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="7e55e725b6714089a102fb1a7c55ae15">
+        <source>Choose layout of settings</source>
+        <target>Seleziona un layout per la finestra delle preferenze</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="7c8e92c4834701ed5dfbd548fcf1d0bd">
+        <source>Enable Functionality Cookie section</source>
+        <target>Abilita la sezione dei "Cookie Necessari" (functionality_storage)</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="9dc5bbce749bd2dde302a2ec129bed25">
+        <source>Enable Functionality Cookie section in front office</source>
+        <target>Abilita la sezione dei "Cookie Necessari" nella finestra delle preferenze</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="133726518d96464b61c42bdcbbcfd514">
+        <source>Enable Customise Cookie section</source>
+        <target>Abilita la sezione dei "Cookie per la Personalizzazione" (personalization_storage)</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="b27b9b48a0242b6d7c14e42f7f400491">
+        <source>Enable Customise Cookie section in front office</source>
+        <target>Abilita la sezione dei "Cookie per la Personalizzazione" nella finestra delle preferenze</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="2ed483382312514fdf31f4b81e1cd180">
+        <source>Enable Security Cookie section</source>
+        <target>Abilita la sezione dei "Cookie per la Sicurezza" (security_storage)</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="f65b083c965af3dc646ebe452f8e27da">
+        <source>Enable Security Cookie section in front office</source>
+        <target>Abilita la sezione dei "Cookie per la Sicurezza" nella finestra delle preferenze</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="5980a3622756a7fe61cc4195157757b3">
+        <source>Enable Ads Cookie section</source>
+        <target>Abilita la sezione dei "Cookie per le finalità di Marketing" (ad_storage)</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="9745483662fbbcdbb295b657b06e1634">
+        <source>Enable Ads Cookie section in front office</source>
+        <target>Abilita la sezione dei "Cookie per le finalità di Marketing" nella finestra delle preferenze</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="40503c38002b9039f2b27213b3920484">
+        <source>Enable Analytics Cookie section</source>
+        <target>Abilita la sezione dei "Cookie per finalità Statistiche" (analytics_storage)</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="d131f3ea9bc98c7ca32082834e2d2176">
+        <source>Enable Analytics Cookie section in front office</source>
+        <target>Abilita la sezione dei "Cookie per finalità Statistiche" nella finestra delle preferenze</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="fb5d2899cd6686bf1b8739b76b2946a4">
+        <source>Enable Auto Clear Cookies if refused</source>
+        <target>Abilita le funzionalità di Auto Clear quando viene negato l'utilizzo dei cookie</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="d721757161f7f70c5b0949fdb6ec2c30">
+        <source>Theme</source>
+        <target>Tema</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="6cb6250e152766d3ab2f49f92b995479">
+        <source>Choose cookie consent theme</source>
+        <target>Selezione il tema</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="42519edadf209a8b7dd4f658d8c9483a">
+        <source>Light Theme</source>
+        <target>Tema chiaro</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="e1043b98a3cb90eb47cd13ebba153f39">
+        <source>Dark Theme</source>
+        <target>Tema scuro</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="5fea7fdd6e4c61f02ba4ec5bf6b49b2f">
+        <source>Enable GTM Consent Mode</source>
+        <target>Abilita la compatibilità con GTM Consent Mode</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="2d39237ffa95e78435c89777f85a2a73">
+        <source>For more information view https://support.google.com/tagmanager/answer/10718549?hl=en</source>
+        <target>Per maggiori informazioni visualizza questo link: https://support.google.com/tagmanager/answer/10718549?hl=it</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="c9cc8cce247e49bae79f15173ce97354">
+        <source>Save</source>
+        <target>Salva</target>
+        <note>Line: </note>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

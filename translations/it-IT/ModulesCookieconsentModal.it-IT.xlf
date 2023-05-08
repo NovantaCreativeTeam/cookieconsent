@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file original="admin0195ydhsc" source-language="it-IT" target-language="it-IT" datatype="plaintext">
+    <body>
+      <trans-unit id="7d151df919f9140b9121e68c4ead658b">
+        <source>Strictly Necessary cookies</source>
+        <target>Cookie necessari</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="da1aa59b888629a29a530b9cf5fe3d52">
+        <source>These cookies are essential for the proper functioning of the website and cannot be disabled.</source>
+        <target>I cookie necessari aiutano a contribuire a rendere fruibile un sito web abilitando le funzioni di base come la navigazione della pagina e l'accesso alle aree protette del sito. Il sito web non può funzionare correttamente senza questi cookie.</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="fa9c10acb146c7a65f841431fd4c8bf9">
+        <source>Personalization cookies</source>
+        <target>Cookie per le preferenze</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="e8fc4c42a1c616224a6ffef140049c59">
+        <source>Personalisation cookies may use third party cookies to help them personalise content and track users across different websites and devices.</source>
+        <target>I cookie per le preferenze consentono a un sito web di ricordare le informazioni che influenzano il modo in cui il sito si comporta o si presenta, come la lingua preferita o la regione che ti trovi</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="ce00bf845a0e59fe175b2e41e1855eb2">
+        <source>Security cookies</source>
+        <target>Cookie per la sicurezza</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="b2daa395badc9f49801019b4a7a34d72">
+        <source>Security cookies allows storage of security-related information, such as authentication, fraud protection, and other means to protect the user.</source>
+        <target>I cookie per la sicurezza consentono di memorizzare informazioni relative alla sicurezza, come l'autenticazione, la protezione dalle frodi e altri mezzi per proteggere l'utente.</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="006028eba2fe64067a324593a1818fe2">
+        <source>Analytics cookies</source>
+        <target>Cookie statistici</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="77b79d93d347b3ef4c2844c2bd67810f">
+        <source>Analytics cookies allow us to measure the performance of our website and our advertising campaigns. We use them to determine the number of visits and sources of visits to our website. We process the data obtained through these cookies in aggregate, without using identifiers that point to specific users of our website. If you disable the use of analytics cookies in relation to your visit, we lose the ability to analyse performance and optimise our measures.</source>
+        <target>I cookie statistici ci consentono di misurare le prestazioni del nostro sito web e delle nostre campagne pubblicitarie. Li utilizziamo per determinare il numero di visite e le fonti delle visite al nostro sito web. I dati ottenuti tramite questi cookie vengono elaborati in forma aggregata, senza utilizzare identificatori che rimandino a utenti specifici del nostro sito web. Se disabilitate l'uso dei cookie analitici in relazione alla vostra visita, perdiamo la possibilità di analizzare le prestazioni e ottimizzare le nostre misure.</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="5fb45aac51991345c882482c25a807d9">
+        <source>Ad cookies</source>
+        <target>Cookie per il marketing</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="744e6c69ea35b700d743ccfe72ab4b06">
+        <source>Advertising cookies are used by us or our partners to show you relevant content or advertisements both on our site and on third party sites. This enables us to create profiles based on your interests, so-called pseudonymised profiles. Based on this information, it is generally not possible to directly identify you as a person, as only pseudonymised data is used. Unless you express your consent, you will not receive content and advertisements tailored to your interests.</source>
+        <target>I cookie per il marketing sono utilizzati da noi o dai nostri partner per mostrarvi contenuti o pubblicità pertinenti sia sul nostro sito che su siti di terzi. Questo ci permette di creare profili basati sui vostri interessi, i cosiddetti profili pseudonimizzati. Sulla base di queste informazioni, in genere non è possibile identificarvi direttamente come persona, poiché vengono utilizzati solo dati pseudonimizzati. A meno che non esprimiate il vostro consenso, non riceverete contenuti e annunci pubblicitari personalizzati in base ai vostri interessi.</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="ef51a6740c63e735f993f8b7b6e77dec">
+        <source>From this section you can manager your preferences enabling or disabling cookie by category. You can change your preferences in any time clicking on button "Manager Preferences"</source>
+        <target>Da questa sezione è possibile gestire le proprie preferenze abilitando o disabilitando i cookie per categoria. È possibile modificare le preferenze in qualsiasi momento cliccando sul pulsante "Gestione preferenze".</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="ecb34eebd74e496e1026663b102ecde0">
+        <source>Your consent details</source>
+        <target>Dettagli del tuo consenso</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="bf3314f4bd58548e6931efd5a1d7cc0f">
+        <source>Consent Id</source>
+        <target>Identificativo del consenso</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="64b08c01d577bbf52985e988f7042646">
+        <source>Consent Date</source>
+        <target>Data del consenso</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="28b65ad4fb748f1996eafbe159d05998">
+        <source>Last Update</source>
+        <target>Ultima modifica</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="ab066b3292d8ab61ef3b5c77169cdd19">
+        <source>More information</source>
+        <target>Maggiori informazioni</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="f8ae9466c31daba3a7b95d1d21cf0c18">
+        <source>For any queries in relation to my policy on cookies and your choices, please [1]contact us[/1]</source>
+        <target>Per qualsiasi domanda relativa alla mia politica sui cookie e alle vostre scelte, vi preghiamo di [1]contattarci[/1].</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="f14dfe5e902386927e1cd455dc211876">
+        <source>This website use cookies</source>
+        <target>Questo sito utilizza i cookie</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="9516407c6ca765f7b6e5ed9129ba700e">
+        <source>We use cookies to personalise content and ads, provide social media features and analyse our traffic. We also provide information about how you use our site to our web analytics, advertising and social media partners, who may combine it with other information you have provided to them or that they have collected based on your use of their services.</source>
+        <target>Utilizziamo i cookie per personalizzare i contenuti e gli annunci, fornire funzioni di social media e analizzare il nostro traffico. Forniamo inoltre informazioni sull'utilizzo del nostro sito ai nostri partner di analisi web, pubblicità e social media, che possono combinarle con altre informazioni fornite dall'utente o raccolte in base all'utilizzo dei loro servizi.</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="3d0238bf1643e39636b1f5040af3bf6f">
+        <source>Accept all</source>
+        <target>Accetta tutto</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="b3048ac5f840321c9be18c48536e75e4">
+        <source>Manage preferences</source>
+        <target>Gestisci preferenze</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="089aa372ad1b762928831bafd8abcb19">
+        <source>Close and Reject</source>
+        <target>Chiudi</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="bac75567d5ddc8d591c5b6a57a658180">
+        <source>Manage cookie preferences</source>
+        <target>Gestisci preferenze</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="d253f20fdcdc1b2e44b3be0ea8dc12f3">
+        <source>Accept current selection</source>
+        <target>Accetta la selezione attuale</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="d3d2e617335f08df83599665eef8a418">
+        <source>Close</source>
+        <target>Chiudi</target>
+        <note>Line: </note>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
