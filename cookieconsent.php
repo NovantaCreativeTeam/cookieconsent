@@ -43,12 +43,13 @@ class CookieConsent extends Module
     const CC_THEME = 'CC_THEME';
     const CC_GTM_CONSENT_MODE = 'CC_GTM_CONSENT_MODE';
     const CC_FB_CONSENT_MODE = 'CC_FB_CONSENT_MODE';
+    const CC_ENABLE_FLOAT_PREFERENCES = 'CC_ENABLE_FLOAT_PREFERENCES';
 
     public function __construct()
     {
         $this->name = 'cookieconsent';
         $this->tab = 'front_office_features';
-        $this->version = '1.0.2';
+        $this->version = '1.0.3';
         $this->author = 'Novanta';
         $this->displayName = ('Cookie Consent');
         $this->description = ('This module install cookie consent to manage user preferences with GTM Consent Mode compatibility');
@@ -78,6 +79,7 @@ class CookieConsent extends Module
         Configuration::updateValue(self::CC_THEME, 'light');
         Configuration::updateValue(self::CC_GTM_CONSENT_MODE, false);
         Configuration::updateValue(self::CC_FB_CONSENT_MODE, false);
+        Configuration::updateValue(self::CC_ENABLE_FLOAT_PREFERENCES, true);
 
         return parent::install() &&
             $this->registerHook('displayHeader') &&
@@ -384,6 +386,25 @@ class CookieConsent extends Module
                         ),
                     ),
                     array(
+                        'type' => 'switch',
+                        'label' => $this->trans('Enable float preferences button', [], 'Modules.Cookieconsent.Admin'),
+                        'name' => self::CC_ENABLE_FLOAT_PREFERENCES,
+                        'is_bool' => true,
+                        'desc' => $this->trans('Enable float preferences button to handle user preferences', [], 'Modules.Cookieconsent.Admin'),
+                        'values' => array(
+                            array(
+                                'id' => 'active_on',
+                                'value' => true,
+                                'label' => $this->trans('Enabled', [], 'Modules.Cookieconsent.Admin')
+                            ),
+                            array(
+                                'id' => 'active_off',
+                                'value' => false,
+                                'label' => $this->trans('Disabled', [], 'Modules.Cookieconsent.Admin')
+                            )
+                        ),
+                    ),
+                    array(
                         'type' => 'select',
                         'label' => $this->trans('Theme', [], 'Modules.Cookieconsent.Admin'),
                         'name' => self::CC_THEME,
@@ -466,7 +487,8 @@ class CookieConsent extends Module
             self::CC_DISPLAY_SECTION_SECURITY => Configuration::get(self::CC_DISPLAY_SECTION_SECURITY, null, null, null, true),
             self::CC_THEME => Configuration::get(self::CC_THEME, null, null, null, true),
             self::CC_GTM_CONSENT_MODE => Configuration::get(self::CC_GTM_CONSENT_MODE, null, null, null, false),
-            self::CC_FB_CONSENT_MODE => Configuration::get(self::CC_FB_CONSENT_MODE, null, null, null, false)
+            self::CC_FB_CONSENT_MODE => Configuration::get(self::CC_FB_CONSENT_MODE, null, null, null, false),
+            self::CC_ENABLE_FLOAT_PREFERENCES => Configuration::get(self::CC_ENABLE_FLOAT_PREFERENCES, null, null, null, true),
         );
     }
 
@@ -636,6 +658,8 @@ class CookieConsent extends Module
      */
     public function hookDisplayFooter()
     {
-        return $this->display(__FILE__, "views/templates/front/hook/displayFooter.tpl");
+        if(Configuration::get(self::CC_ENABLE_FLOAT_PREFERENCES)) { 
+            return $this->display(__FILE__, "views/templates/front/hook/displayFooter.tpl");
+        }
     }
 }
