@@ -48,7 +48,7 @@ class CookieConsent extends Module
     {
         $this->name = 'cookieconsent';
         $this->tab = 'front_office_features';
-        $this->version = '1.0.1';
+        $this->version = '1.0.2';
         $this->author = 'Novanta';
         $this->displayName = ('Cookie Consent');
         $this->description = ('This module install cookie consent to manage user preferences with GTM Consent Mode compatibility');
