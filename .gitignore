@@ -29,3 +29,5 @@ Thumbs.db
 
 config.xml
 config_*.xml
+
+views/js/report.html
