@@ -102,14 +102,14 @@
         <target>Accetta tutto</target>
         <note>Line: </note>
       </trans-unit>
+      <trans-unit id="a50239593db1c9df6d42238d7c9cc1b1">
+        <source>Reject all</source>
+        <target>Rifiuta tutto</target>
+        <note>Line: </note>
+      </trans-unit>
       <trans-unit id="b3048ac5f840321c9be18c48536e75e4">
         <source>Manage preferences</source>
         <target>Gestisci preferenze</target>
-        <note>Line: </note>
-      </trans-unit>
-      <trans-unit id="089aa372ad1b762928831bafd8abcb19">
-        <source>Close and Reject</source>
-        <target>Chiudi</target>
         <note>Line: </note>
       </trans-unit>
       <trans-unit id="bac75567d5ddc8d591c5b6a57a658180">

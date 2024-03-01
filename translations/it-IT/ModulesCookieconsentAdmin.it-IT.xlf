@@ -2,51 +2,6 @@
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
   <file original="admin0195ydhsc" source-language="it-IT" target-language="it-IT" datatype="plaintext">
     <body>
-      <trans-unit id="2822e1388de026db6f168058e9e49cdc">
-        <source>Auto Clear Cookie</source>
-        <target>Auto Clear Cookie</target>
-        <note>Line: </note>
-      </trans-unit>
-      <trans-unit id="14803c6f2ec9d96347bade4419eef48a">
-        <source>Bar Wide</source>
-        <target>Bar Wide</target>
-        <note>Line: </note>
-      </trans-unit>
-      <trans-unit id="ddc35f88fa71b6ef142ae61f35364653">
-        <source>Bar</source>
-        <target>Bar</target>
-        <note>Line: </note>
-      </trans-unit>
-      <trans-unit id="8b3a19d56677d8f6ac100d0174302b91">
-        <source>Box Wide</source>
-        <target>Box Wide</target>
-        <note>Line: </note>
-      </trans-unit>
-      <trans-unit id="721e5ea131bfe0493f56e97465a2daac">
-        <source>Box Inline</source>
-        <target>Box Inline</target>
-        <note>Line: </note>
-      </trans-unit>
-      <trans-unit id="3cfce651e667ab85486dd42a8185f98a">
-        <source>Box</source>
-        <target>Box</target>
-        <note>Line: </note>
-      </trans-unit>
-      <trans-unit id="a5aea5bc0d8e94a476585b2f5d926e7a">
-        <source>Cloud Inline</source>
-        <target>Cloud Inline</target>
-        <note>Line: </note>
-      </trans-unit>
-      <trans-unit id="c8e2277ecfb1427838c488c217f99466">
-        <source>Cloud</source>
-        <target>Cloud</target>
-        <note>Line: </note>
-      </trans-unit>
-      <trans-unit id="ebd9bec4d70abc789d439c1f136b0538">
-        <source>Layout</source>
-        <target>Layout</target>
-        <note>Line: </note>
-      </trans-unit>
       <trans-unit id="f4f70727dc34561dfde1a3c529b6205c">
         <source>Settings</source>
         <target>Impostazioni</target>
@@ -127,9 +82,49 @@
         <target>in Alto a Destra</target>
         <note>Line: </note>
       </trans-unit>
+      <trans-unit id="ebd9bec4d70abc789d439c1f136b0538">
+        <source>Layout</source>
+        <target>Layout</target>
+        <note>Line: </note>
+      </trans-unit>
       <trans-unit id="16b195938747fe7edf981168d9bb3a89">
         <source>Choose layout</source>
         <target>Seleziona un layout</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="c8e2277ecfb1427838c488c217f99466">
+        <source>Cloud</source>
+        <target>Cloud</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="a5aea5bc0d8e94a476585b2f5d926e7a">
+        <source>Cloud Inline</source>
+        <target>Cloud Inline</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="3cfce651e667ab85486dd42a8185f98a">
+        <source>Box</source>
+        <target>Box</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="721e5ea131bfe0493f56e97465a2daac">
+        <source>Box Inline</source>
+        <target>Box Inline</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="8b3a19d56677d8f6ac100d0174302b91">
+        <source>Box Wide</source>
+        <target>Box Wide</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="ddc35f88fa71b6ef142ae61f35364653">
+        <source>Bar</source>
+        <target>Bar</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="14803c6f2ec9d96347bade4419eef48a">
+        <source>Bar Wide</source>
+        <target>Bar Wide</target>
         <note>Line: </note>
       </trans-unit>
       <trans-unit id="f19b3d59780b9c361c329f85c1053ef5">
@@ -192,9 +187,24 @@
         <target>Abilita la sezione dei "Cookie per finalità Statistiche" nella finestra delle preferenze</target>
         <note>Line: </note>
       </trans-unit>
+      <trans-unit id="2822e1388de026db6f168058e9e49cdc">
+        <source>Auto Clear Cookie</source>
+        <target>Auto Clear Cookie</target>
+        <note>Line: </note>
+      </trans-unit>
       <trans-unit id="fb5d2899cd6686bf1b8739b76b2946a4">
         <source>Enable Auto Clear Cookies if refused</source>
         <target>Abilita le funzionalità di Auto Clear quando viene negato l'utilizzo dei cookie</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="f2ad24b44b7b28d27db9fa7be0eb7733">
+        <source>Enable float preferences button</source>
+        <target>Abilita il bottone per le preferenze</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="bc725004a502ce7b26e302db3c5ff624">
+        <source>Enable float preferences button to handle user preferences</source>
+        <target>Abilita il bottone per la gestione delle preferenze dell'utente</target>
         <note>Line: </note>
       </trans-unit>
       <trans-unit id="d721757161f7f70c5b0949fdb6ec2c30">
@@ -225,6 +235,11 @@
       <trans-unit id="2d39237ffa95e78435c89777f85a2a73">
         <source>For more information view https://support.google.com/tagmanager/answer/10718549?hl=en</source>
         <target>Per maggiori informazioni visualizza questo link: https://support.google.com/tagmanager/answer/10718549?hl=it</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="d788077e6936dcc77975e116cda9191c">
+        <source>Enable FB Consent Mode</source>
+        <target>Abilita la gestione del consenso di FB</target>
         <note>Line: </note>
       </trans-unit>
       <trans-unit id="c9cc8cce247e49bae79f15173ce97354">
