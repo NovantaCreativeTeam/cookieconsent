@@ -511,8 +511,8 @@ class CookieConsent extends Module
     {
         $this->context->controller->registerStylesheet('cookie-consent-css', $this->_path . '/views/css/front.css');
 
-        $this->context->controller->registerStylesheet('cookieconsent-css', 'https://cdn.jsdelivr.net/npm/vanilla-cookieconsent@3.0.0-rc.13/dist/cookieconsent.min.css', ['server' => 'remote']);
-        $this->context->controller->registerJavascript('cookieconsent-js', 'https://cdn.jsdelivr.net/npm/vanilla-cookieconsent@3.0.0-rc.13/dist/cookieconsent.umd.min.js', ['server' => 'remote', 'position' => 'bottom', 'attributes' => 'defer']);
+        $this->context->controller->registerStylesheet('cookieconsent-css', 'https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@v3.0.0/dist/cookieconsent.css', ['server' => 'remote']);
+        $this->context->controller->registerJavascript('cookieconsent-js', 'https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@v3.0.0/dist/cookieconsent.umd.js', ['server' => 'remote', 'position' => 'bottom', 'attributes' => 'defer']);
         $this->context->controller->registerJavascript('cookieconsent-init', $this->_path . '/views/js/cookieconsent-init.min.js', ['position' => 'bottom', 'attributes' => 'defer']);
         
         if(Configuration::get(self::CC_GTM_CONSENT_MODE)) {
@@ -631,14 +631,14 @@ class CookieConsent extends Module
                                     'title' => $this->trans('This website use cookies', [], 'Modules.Cookieconsent.Modal'),
                                     'description' => $this->trans('We use cookies to personalise content and ads, provide social media features and analyse our traffic. We also provide information about how you use our site to our web analytics, advertising and social media partners, who may combine it with other information you have provided to them or that they have collected based on your use of their services.', [], 'Modules.Cookieconsent.Modal'),
                                     'acceptAllBtn' => $this->trans('Accept all', [], 'Modules.Cookieconsent.Modal'),
-                                    // 'acceptNecessaryBtn' => $this->trans('Reject all', [], 'Modules.Cookieconsent.Modal'),
+                                    'acceptNecessaryBtn' => $this->trans('Reject all', [], 'Modules.Cookieconsent.Modal'),
                                     'showPreferencesBtn' => $this->trans('Manage preferences', [], 'Modules.Cookieconsent.Modal'),
-                                    'closeIconLabel' => $this->trans('Close and Reject', [], 'Modules.Cookieconsent.Modal'),
+                                    //'closeIconLabel' => $this->trans('Close and Reject', [], 'Modules.Cookieconsent.Modal'),
                                 ],
                                 'preferencesModal' => [
                                     'title' => $this->trans('Manage cookie preferences', [], 'Modules.Cookieconsent.Modal'),
                                     'acceptAllBtn' => $this->trans('Accept all', [], 'Modules.Cookieconsent.Modal'),
-                                    //'acceptNecessaryBtn' => $this->trans('Reject all', [], 'Modules.Cookieconsent.Modal'),
+                                    'acceptNecessaryBtn' => $this->trans('Reject all', [], 'Modules.Cookieconsent.Modal'),
                                     'savePreferencesBtn' => $this->trans('Accept current selection', [], 'Modules.Cookieconsent.Modal'),
                                     'closeIconLabel' => $this->trans('Close', [], 'Modules.Cookieconsent.Modal'),
                                     'sections' => $sections
