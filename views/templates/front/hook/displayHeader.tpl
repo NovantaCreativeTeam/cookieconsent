@@ -5,7 +5,7 @@
 {if $theme eq 'dark'}
 <script type="text/javascript">
 document.addEventListener("DOMContentLoaded", () => {
-  document.body.classList.toggle('c_darkmode');
+  document.documentElement.classList.add('cc--darkmode');
 });
 </script>
 {/if}
