@@ -513,14 +513,14 @@ class CookieConsent extends Module
 
         $this->context->controller->registerStylesheet('cookieconsent-css', 'https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@v3.0.0/dist/cookieconsent.css', ['server' => 'remote']);
         $this->context->controller->registerJavascript('cookieconsent-js', 'https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@v3.0.0/dist/cookieconsent.umd.js', ['server' => 'remote', 'position' => 'bottom', 'attributes' => 'defer']);
-        $this->context->controller->registerJavascript('cookieconsent-init', $this->_path . '/views/js/cookieconsent-init.min.js', ['position' => 'bottom', 'attributes' => 'defer']);
-        
+        $this->context->controller->registerJavascript('cookieconsent-init', $this->_path . '/views/js/cookieconsent-init.min.js', ['position' => 'bottom', 'attributes' => 'defer', 'version' => $this->version]);
+
         if(Configuration::get(self::CC_GTM_CONSENT_MODE)) {
-            $this->context->controller->registerJavascript('gtag-consent-handler', $this->_path . '/views/js/gtag-consent-init.min.js', ['position' => 'bottom']);
+            $this->context->controller->registerJavascript('gtag-consent-handler', $this->_path . '/views/js/gtag-consent-init.min.js', ['position' => 'bottom', 'version' => $this->version]);
         }
 
         if(Configuration::get(self::CC_FB_CONSENT_MODE)) {
-            $this->context->controller->registerJavascript('fb-consent-init', $this->_path . '/views/js/fb-consent-init.min.js', ['position' => 'head', 'priority' => 2]);
+            $this->context->controller->registerJavascript('fb-consent-init', $this->_path . '/views/js/fb-consent-init.min.js', ['position' => 'head', 'priority' => 2, 'version' => $this->version]);
         }
         
         $cookieCategories = [];
