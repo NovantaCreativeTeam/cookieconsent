@@ -1,5 +1,5 @@
 {literal}<script type="text/javascript">{/literal}
-    window.cc_config = {$config nofilter};
+    window.cc_config = {$config|unescape nofilter};
 {literal}</script>{/literal}
 
 {if $theme eq 'dark'}

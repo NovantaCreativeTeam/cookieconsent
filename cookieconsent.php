@@ -594,11 +594,11 @@ class CookieConsent extends Module
         array_push($sections, 
             [
                 'title' => $this->trans('Your consent details', [], 'Modules.Cookieconsent.Modal'),
-                'description' => '<p>' . $this->trans('Consent Id', [], 'Modules.Cookieconsent.Modal') . ': <span id="consent-id">-</span></p><p>' . $this->trans('Consent Date', [], 'Modules.Cookieconsent.Modal') . ': <span id="consent-timestamp">-</span></p><p>' . $this->trans('Last Update', [], 'Modules.Cookieconsent.Modal') . ': <span id="last-consent-timestamp">-</span></p>'
+                'description' => '<p>' . $this->trans('Consent Id', [], 'Modules.Cookieconsent.Modal') . ': <span id="consent-id">-</span></p><br/><p>' . $this->trans('Consent Date', [], 'Modules.Cookieconsent.Modal') . ': <span id="consent-timestamp">-</span></p><br/><p>' . $this->trans('Last Update', [], 'Modules.Cookieconsent.Modal') . ': <span id="last-consent-timestamp">-</span></p>'
             ],
             [
                 'title' => $this->trans('More information', [], 'Modules.Cookieconsent.Modal'),
-                'description'=> $this->trans('For any queries in relation to my policy on cookies and your choices, please [1]contact us[/1]', ['[1]' => '<a href="' . $this->context->link->getPageLink('contact') . '" target="_blank">', '[/1]' => '</a>'], 'Modules.Cookieconsent.Modal'),
+                'description'=> $this->trans('For any queries in relation to my policy on cookies and your choices, please [1]contact us[/1]', ['[1]' => "<a href=\"" . $this->context->link->getPageLink('contact') . "\" target=\"_blank\">", '[/1]' => "</a>"], 'Modules.Cookieconsent.Modal'),
             ]
         );
 
