@@ -39,17 +39,19 @@ class CookieConsent extends Module
     const CC_DISPLAY_SECTION_SECURITY = "CC_DISPLAY_SECTION_SECURITY";
     const CC_DISPLAY_SECTION_ADS = "CC_DISPLAY_SECTION_ADS";
     const CC_DISPLAY_SECTION_ANALYTICS = "CC_DISPLAY_SECTION_ANALYTICS";
+    const CC_FORCE_ANALYTICS = 'CC_FORCE_ANALYTICS';
     const CC_AUTO_CLEAR = "CC_AUTO_CLEAR";
     const CC_THEME = 'CC_THEME';
     const CC_GTM_CONSENT_MODE = 'CC_GTM_CONSENT_MODE';
     const CC_FB_CONSENT_MODE = 'CC_FB_CONSENT_MODE';
     const CC_ENABLE_FLOAT_PREFERENCES = 'CC_ENABLE_FLOAT_PREFERENCES';
 
+
     public function __construct()
     {
         $this->name = 'cookieconsent';
         $this->tab = 'front_office_features';
-        $this->version = '1.0.3';
+        $this->version = '1.0.4';
         $this->author = 'Novanta';
         $this->displayName = ('Cookie Consent');
         $this->description = ('This module install cookie consent to manage user preferences with GTM Consent Mode compatibility');
@@ -80,6 +82,7 @@ class CookieConsent extends Module
         Configuration::updateValue(self::CC_GTM_CONSENT_MODE, false);
         Configuration::updateValue(self::CC_FB_CONSENT_MODE, false);
         Configuration::updateValue(self::CC_ENABLE_FLOAT_PREFERENCES, true);
+        Configuration::updateValue(self::CC_FORCE_ANALYTICS, false);
 
         return parent::install() &&
             $this->registerHook('displayHeader') &&
@@ -368,6 +371,25 @@ class CookieConsent extends Module
                     ),
                     array(
                         'type' => 'switch',
+                        'label' => $this->trans('Force Analytics', [], 'Modules.Cookieconsent.Admin'),
+                        'name' => self::CC_FORCE_ANALYTICS,
+                        'is_bool' => true,
+                        'desc' => $this->trans('Force Analytics to be always granted', [], 'Modules.Cookieconsent.Admin'),
+                        'values' => array(
+                            array(
+                                'id' => 'active_on',
+                                'value' => true,
+                                'label' => $this->trans('Enabled', [], 'Modules.Cookieconsent.Admin')
+                            ),
+                            array(
+                                'id' => 'active_off',
+                                'value' => false,
+                                'label' => $this->trans('Disabled', [], 'Modules.Cookieconsent.Admin')
+                            )
+                        ),
+                    ),
+                    array(
+                        'type' => 'switch',
                         'label' => $this->trans('Auto Clear Cookie', [], 'Modules.Cookieconsent.Admin'),
                         'name' => self::CC_AUTO_CLEAR,
                         'is_bool' => true,
@@ -489,6 +511,7 @@ class CookieConsent extends Module
             self::CC_GTM_CONSENT_MODE => Configuration::get(self::CC_GTM_CONSENT_MODE, null, null, null, false),
             self::CC_FB_CONSENT_MODE => Configuration::get(self::CC_FB_CONSENT_MODE, null, null, null, false),
             self::CC_ENABLE_FLOAT_PREFERENCES => Configuration::get(self::CC_ENABLE_FLOAT_PREFERENCES, null, null, null, true),
+            self::CC_FORCE_ANALYTICS => Configuration::get(self::CC_FORCE_ANALYTICS, null, null, null, false)
         );
     }
 
@@ -605,6 +628,7 @@ class CookieConsent extends Module
         $this->context->smarty->assign(
             [
                 'theme' => Configuration::get(self::CC_THEME),
+                'force_analytics' => Configuration::get(self::CC_FORCE_ANALYTICS),
                 'config' => json_encode([
                     "disablePageInteraction" => Configuration::get(self::CC_FORCE_CONSENT, null, null, null, true),
                     "autoClearCookies" => Configuration::get(self::CC_AUTO_CLEAR, null, null, null, false),

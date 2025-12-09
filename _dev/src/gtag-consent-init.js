@@ -14,7 +14,9 @@ function gtag() { window.dataLayer.push(arguments); }
         });
 
         // analytics storage force
-        consent['analytics_storage'] = 'granted'
+        if(window.cc_force_analytics) {
+            consent['analytics_storage'] = 'granted'
+        }
 
         // Consent mode v2
         // ad_personalization & ad_user_data follow ad_storage value
@@ -30,7 +32,7 @@ window.addEventListener('cc:onChange', function(event){
     let userPreferences = CookieConsent.getUserPreferences()
 
     event.detail.changedCategories.forEach(category => {
-        if(category === 'analytics_storage') { // analytics storage force
+        if(category === 'analytics_storage' && window.cc_force_analytics) { // analytics storage force
             consent[category] = 'granted'
         } else {
             consent[category] = userPreferences.acceptedCategories.includes(category) ? 'granted' : 'denied'
